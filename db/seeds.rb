@@ -12,7 +12,7 @@ product_name = "Pantalon"
 price = [35.50,  49.99, 68.90, 89.90, 99.00]
 urls = %w[
 https://res.cloudinary.com/wusinho1/image/upload/v1729288091/Cocotera/d3suyx3amzpqkaqxettz.jpg
-https://res.cloudinary.com/wusinho1/image/upload/v1729288090/Cocotera/fzp8oxfqwtaxbluzh52f.jp
+https://res.cloudinary.com/wusinho1/image/upload/v1729288090/Cocotera/fzp8oxfqwtaxbluzh52f.jpg
 https://res.cloudinary.com/wusinho1/image/upload/v1729288090/Cocotera/n5dydn0iqcvnizemjvb8.jpg
 https://res.cloudinary.com/wusinho1/image/upload/v1729288090/Cocotera/iepxtojxsocw9bjvnplm.jpg
 https://res.cloudinary.com/wusinho1/image/upload/v1729288089/Cocotera/wlu8dogf4sc05jbm97aw.jpg
