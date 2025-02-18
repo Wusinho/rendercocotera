@@ -1,23 +1,28 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
-    plan: free
+  - name: cocotera
+    databaseName: cocotera
+    user: cocotera
 
 services:
-  - type: web
-    name: mysite
-    runtime: ruby
+  - type: redis
+    name: cache
+    ipAllowList: [ ]
     plan: free
+    maxmemoryPolicy: allkeys-lfu
+  - type: web
+    name: cocotera
+    env: ruby
     buildCommand: "./bin/render-build.sh"
-    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
-    startCommand: "bundle exec rails server"
+    startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: cocotera
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
-      - key: WEB_CONCURRENCY
-        value: 2 # sensible default
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: cache
+          property: connectionString
