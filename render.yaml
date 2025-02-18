@@ -2,18 +2,14 @@ databases:
   - name: cocotera
     databaseName: cocotera
     user: cocotera
+    plan: free
 
 services:
-  - type: redis
-    name: cache
-    ipAllowList: [ ]
-    plan: free
-    maxmemoryPolicy: allkeys-lfu
   - type: web
     name: cocotera
     env: ruby
     buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -21,8 +17,5 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
-      - key: REDIS_URL
-        fromService:
-          type: redis
-          name: cache
-          property: connectionString
+      - key: WEB_CONCURRENCY
+        value: 2
